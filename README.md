@@ -1,6 +1,6 @@
 # animap
-thesis project
+First-year thesis project, 2012 Malmö University
 
-##install
-1. `npm install` (this requires node.js)
+## how to get it running
+1. `npm install` (requires [node.js](//nodejs.org))
 2. `npm run start`
