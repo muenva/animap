@@ -1,0 +1,23 @@
+{
+  "name": "animap",
+  "version": "1.0.0",
+  "description": "thesis project",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ws"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muenva/animap.git"
+  },
+  "keywords": [
+    "data-visualization"
+  ],
+  "author": "Balazs Gobel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/muenva/animap/issues"
+  },
+  "homepage": "https://github.com/muenva/animap#readme"
+}
