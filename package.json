@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/muenva/animap/issues"
   },
-  "homepage": "https://github.com/muenva/animap#readme"
+  "homepage": "https://github.com/muenva/animap#readme",
+  "devDependencies": {
+    "local-web-server": "^1.2.2"
+  }
 }

@@ -1,11 +1,13 @@
 ::selection {
 	background: yellow !important;
 }
+svg g {
+	cursor: move;
+}
 .overlay {
 	fill: none;
 	pointer-events: all;
-	stroke:#ccc;
-	stroke-width:1px;
+	stroke: rgba(0, 0, 0, 0.1);
 }
 .node text {
 	font: 10px sans-serif;
@@ -13,6 +15,7 @@
 .node circle {
 	stroke: #fff;
 	stroke-width:1px;
+	cursor: default;
 }
 body {
 	margin:0;
@@ -31,7 +34,7 @@ body {
 .changers #findInput{
 	left: 65px;
 	top: 1px;
-	border: 1px #ccc solid;	
+	border: 1px #ccc solid;
 }
 .popDiv {
 	padding:10px;
