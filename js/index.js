@@ -1,4 +1,4 @@
-(function () {
+(function (window) {
   var width = window.innerWidth - 10,
       height = window.innerHeight - 10,
       color = "#1f77b4",
@@ -24,6 +24,7 @@
       .attr("width", width)
       .attr("height", height)
       .append("svg:g")
+      .attr("id", "zoomableArea")
       .call(d3.behavior.zoom().x(xScale).y(yScale).scaleExtent([-1, 8]).on("zoom", zoom))
       .append("svg:g");
 
@@ -220,20 +221,20 @@
           delayIn: 0,
           delayOut: 3000,
           title: function() {
-              var thisRec = this.getAttribute('rank');
-              var thisTitle = this.getAttribute('nodeTitle');
-              var cover = this.getAttribute('cover');
-              var genres = this.getAttribute('genres').replace(/,/g, ", ");
-              var myDescription = this.getAttribute('description');
-              var linkTitle = this.getAttribute('nodeTitle').replace(/ /g, "-");
-              //var videoLink = 'http://www.animeultima.io/search.html?searchquery=' + thisTitle;
-              var videoLink = 'http://www.animeultima.io/' + linkTitle + '-episode-1-english-subbed';
+              var rank = this.getAttribute('rank'),
+                  title = this.getAttribute('nodeTitle'),
+                  cover = this.getAttribute('cover'),
+                  genres = this.getAttribute('genres').replace(/,/g, ", "),
+                  myDescription = this.getAttribute('description'),
+                  linkTitle = this.getAttribute('nodeTitle').replace(/ /g, "-").replace(/'/g, ""),
+                  // videoLink = 'http://gogoanime.io/search.html?keyword=' + linkTitle;
+                  videoLink = 'http://gogoanime.io/' + linkTitle + '-episode-1';
               return '<div class="popDiv">' +
                   '<img src="covers/' + cover + '" alt="Anime Cover Art" />' +
                   '<p class="header"> <span>' +
-                  thisTitle +
+                  title +
                   '<span> </p>' +
-                  '<p class="header">Rank: <span>' + thisRec + '</span> out of 327</p>' +
+                  '<p class="header">Rank: <span>' + rank + '</span> out of 327</p>' +
                   '<p class="header"><span>' + genres + '</span></p>' +
                   '<p>' + myDescription + '</p>' +
                   '<p> <a class="videoLink" href="' + videoLink + '" target="videoFrame">Watch Anime</a></p>' +
@@ -378,14 +379,28 @@
           'transitionOut': 'none',
           'type': 'iframe'
       });
+      var svgElement = document.getElementById('zoomableArea');
+      svgElement.addEventListener('mousedown', function (e) {
+        e.target.style.cursor = '-webkit-grabbing';
+        e.target.style.cursor += '-moz-grabbing';
+      });
+      svgElement.addEventListener('mouseup', function (e) {
+        e.target.style.cursor = '-webkit-grab';
+        e.target.style.cursor += '-moz-grab';
+      });
   });
 
-  window.toggleMyRank = toggleMyRank;
-  window.toggleMyList = toggleMyList;
-  window.toggleGenre = toggleGenre;
-  window.findNext = findNext;
-  window.toggleConnections = toggleConnections;
-  window.toggleNames = toggleNames;
-  window.toggleInfo = toggleInfo;
 
-})();
+
+ window.animap = {
+   toggleMyRank,
+   toggleMyList,
+   toggleGenre,
+   findNext,
+   toggleConnections,
+   toggleNames,
+   toggleInfo
+ };
+
+
+})(window);

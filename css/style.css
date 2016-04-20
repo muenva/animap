@@ -2,7 +2,8 @@
 	background: yellow !important;
 }
 svg g {
-	cursor: move;
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
 }
 .overlay {
 	fill: none;
