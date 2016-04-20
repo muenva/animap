@@ -5,7 +5,8 @@
   "main": "js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server ./ -o"
+    "start": "http-server ./ -o",
+    "sass": "sass-watch ./css/style.scss ./css/style.css"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,11 @@
   },
   "homepage": "https://github.com/muenva/animap#readme",
   "devDependencies": {
-    "http-server": "^0.9.0"
+    "gulp": "^3.9.1",
+    "gulp-cleancss": "^0.2.2",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^2.0.0-alpha",
+    "http-server": "^0.9.0",
+    "sass-watch": "^0.1.0"
   }
 }
