@@ -1,6 +1,12 @@
-::selection {
-	background: yellow !important;
+$color-stroke: #F7ECDF;
+$color-node: #3A8F9B;
+$color-accent: #B54545;
+
+body {
+	margin:0;
+	padding:0;
 }
+
 svg g {
 	cursor: -webkit-grab;
 	cursor: -moz-grab;
@@ -8,38 +14,63 @@ svg g {
 .overlay {
 	fill: none;
 	pointer-events: all;
-	stroke: rgba(0, 0, 0, 0.1);
+	stroke: $color-stroke;
 }
-.node text {
-	font: 10px sans-serif;
+.node {
+	text {
+		font: 10px sans-serif;
+	}
+	circle {
+		stroke: white;
+		stroke-width:1px;
+		cursor: default;
+	}
+
 }
-.node circle {
-	stroke: #fff;
-	stroke-width:1px;
-	cursor: default;
+.modifiers {
+	position: absolute;
+  width: 15vw;
+
+	input {
+		background-color: $color-stroke; // #E0D5BF;
+		border: none;
+		padding: 15px 10px;
+		margin: 10px 0 5px 10px;
+		min-width: 100px;
+		cursor: pointer;
+	}
 }
-body {
-	margin:0;
-	padding:0;
-}
-.changers input, .changers button {
-	position:absolute;
-	top:0px;
-}
-.changers button.myButton {
-	top:2px;
-	left: 190px;
-	border: 0;
-	background: transparent;
-}
-.changers #findInput{
-	left: 65px;
-	top: 1px;
-	border: 1px #ccc solid;
-}
+
 .popDiv {
 	padding:10px;
-	/*height: 250px;*/
+	//height: 250px;
+	img {
+		margin:0 20px 0 0;
+		width:126px;
+		height:183px;
+		float:left;
+	}
+	p {
+		font-size:100%;
+		color: white;
+		padding:0;
+		font-family:Verdana, Geneva, sans-serif;
+		text-align:left;
+		word-wrap:break-word;
+
+		&.header {
+			margin:0 0 .7em 146px;
+		}
+	}
+
+	span {
+		font-weight:bold;
+	}
+
+	a.videoLink {
+		color: $color-node;
+		font-size:120%;
+	}
 }
 .tipsy {
 	padding:2px !important;
@@ -47,32 +78,13 @@ body {
 .tipsy-inner {
 	min-width: 310px !important;
 	max-width:330px !important;
-	/*height:240px !important;*/
+	//height:240px !important;
 }
-.popDiv img {
-	margin:0 20px 0 0;
-	width:126px;
-	height:183px;
-	float:left;
-}
-.popDiv p {
-	font-size:100%;
-	color:#fff;
-	padding:0;
-	font-family:Verdana, Geneva, sans-serif;
-	text-align:left;
-	word-wrap:break-word;
-}
-.popDiv p.header {
-	margin:0 0 .7em 146px;
-}
-.popDiv span {
-	font-weight:bold;
-}
-.popDiv a.videoLink {
-	color: #0ff;
-	font-size:120%;
-}
+
 .fancybox-overlay-fixed {
 	background-color: rgba(0,0,0,.8);
+}
+
+::selection {
+	background: $color-accent !important;
 }

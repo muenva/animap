@@ -1,9 +1,9 @@
 (function (window) {
   var width = window.innerWidth - 10,
       height = window.innerHeight - 10,
-      color = "#1f77b4",
-      highlight = "#d62728",
-      gray = "#ccc",
+      nodeColor = "#3A8F9B",
+      highlight = "#B54545",
+      strokeColor = "#F7ECDF",
       linkVisible = "visible",
       titleVisibility = "hidden",
       alreadySelected = false,
@@ -38,7 +38,7 @@
       .attr("y", height / 2)
       .attr("dy", ".35em")
       .attr("text-anchor", "middle")
-      .text("simulating. a moment, please...");
+      .text("simulating...");
 
 
   d3.json("js/anime.json", function(json) {
@@ -70,7 +70,7 @@
           .enter().append("svg:g")
           .append("line")
           .attr("class", "link")
-          .style("stroke", gray)
+          .style("stroke", strokeColor)
           .style("stroke-width", function(d) {
               return strokeWidth(d.value);
           })
@@ -95,7 +95,7 @@
 
       node.append("svg:circle")
           .attr("r", radius)
-          .style("fill", color)
+          .style("fill", nodeColor)
           .attr("rel", "hide")
           .on("click", function(d) {
               return toggleInfo(this)
@@ -179,9 +179,9 @@
       function mouseout() {
           d3.select(this).select("circle").transition()
               .duration(150)
-              .style("fill", color);
+              .style("fill", nodeColor);
           d3.select(this).select("circle").each(fade(1));
-          d3.select(this).selectAll(".link").attr("stroke", gray);
+          d3.select(this).selectAll(".link").attr("stroke", strokeColor);
           d3.select(this).select("text").each(showTitles("visible"));
       }
 
@@ -337,13 +337,13 @@
           d3.selectAll("circle").transition()
               .duration(1000)
               .style("fill", function(d, i) {
-                  return i % 25 == 0 ? 'rgb(255,30,30)' : 'rgb(190,190,190)';
+                return i % 25 == 0 ? highlight : strokeColor;
               });
           myListVisible = true;
       } else {
           d3.selectAll("circle").transition()
               .duration(1000)
-              .style("fill", color);
+              .style("fill", nodeColor);
           myListVisible = false;
       }
   }

@@ -8,16 +8,12 @@
 </head>
 
 <body>
-  <div class="changers">
+  <div class="modifiers">
     <input type="button" value="Names" onclick="animap.toggleNames()" title="You can search only if you enabled the names. Look for the yellow patch." />
-    <input type="text" id="findInput" placeholder="Search..." size="20" title="You can search only if you enabled the names." />
-    <button onclick="animap.findNext(); return false;" class="myButton">
-      <img src="img/search-icon.png" width="17" height="17" alt="find">
-    </button>
-    <input type="button" value="Horror"   onclick="animap.toggleGenre('Horror')" style="top:25px;width: 57px;left: 2px;" title="Toggle horror anime" />
-    <input type="button" value="Mystery"  onclick="animap.toggleGenre('Mystery')" style="top:25px;left:65px;" title="Toggle mystery anime" />
-    <input type="button" value="Watched"  onclick="animap.toggleMyList()" style="top:50px;" title="What have you watched (demo)" />
-    <input type="button" value="My Ranks" onclick="animap.toggleMyRank()" style="top:50px;left:65px;" title="How you ranked the anime (demo)" />
+    <input type="button" value="Horror"   onclick="animap.toggleGenre('Horror')" title="Toggle horror anime" />
+    <input type="button" value="Mystery"  onclick="animap.toggleGenre('Mystery')" title="Toggle mystery anime" />
+    <input type="button" value="Watched"  onclick="animap.toggleMyList()" title="What have you watched (demo)" />
+    <input type="button" value="My Ranks" onclick="animap.toggleMyRank()" title="How you ranked the anime (demo)" />
   </div>
 
   <script src="js/d3.min.js"></script>
