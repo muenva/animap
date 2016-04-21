@@ -2,6 +2,9 @@ var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
 var cleancss = require('gulp-cleancss');
+var webserver = require('gulp-webserver');
+
+gulp.task('default', ['webserver', 'watch']);
 
 gulp.task('watch', function () {
   gulp.watch('css/**/*.scss', ['build-css'])
@@ -24,4 +27,15 @@ gulp.task('build-css', () => {
     .pipe(cleancss(cleancssOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('css'));
+});
+
+
+gulp.task('webserver', function() {
+  gulp.src('./')
+    .pipe(webserver({
+      livereload: true,
+      directoryListing: true,
+      open: true,
+      fallback: 'index.html'
+    }));
 });
