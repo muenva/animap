@@ -1,20 +1,29 @@
+@import 'fancybox';
+@import 'tipsy';
+
 $color-stroke: #F7ECDF;
+$color-bg: #F5DEB3;
 $color-node: #3A8F9B;
 $color-accent: #B54545;
 
 body {
 	margin:0;
 	padding:0;
+	overflow: hidden;
 }
 
-svg g {
-	cursor: -webkit-grab;
-	cursor: -moz-grab;
+svg {
+	background: $color-bg;
+	> g {
+		cursor: -webkit-grab;
+		cursor: -moz-grab;
+	}
 }
 .overlay {
 	fill: none;
 	pointer-events: all;
-	stroke: $color-stroke;
+	stroke: black;
+	fill: white;
 }
 .node {
 	text {
@@ -23,7 +32,8 @@ svg g {
 	circle {
 		stroke: white;
 		stroke-width:1px;
-		cursor: default;
+		cursor: pointer !important;
+		outline: none;
 	}
 
 }

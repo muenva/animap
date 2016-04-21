@@ -1,6 +1,6 @@
 (function (window) {
-  var width = window.innerWidth - 10,
-      height = window.innerHeight - 10,
+  var width = window.innerWidth,
+      height = window.innerHeight,
       nodeColor = "#3A8F9B",
       highlight = "#B54545",
       strokeColor = "#F7ECDF",
@@ -10,11 +10,11 @@
       myListVisible = false;
 
   var xScale = d3.scale.linear()
-      .domain([0, width])
-      .range([0, width]),
-      yScale = d3.scale.linear()
-      .domain([0, height])
-      .range([height, 0]);
+      .domain([0, width * 2])
+      .range([0, width * 2]),
+    yScale = d3.scale.linear()
+      .domain([0, height * 2])
+      .range([height * 2, 0]);
 
   function zoom() {
       svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")");
@@ -25,12 +25,12 @@
       .attr("height", height)
       .append("svg:g")
       .attr("id", "zoomableArea")
-      .call(d3.behavior.zoom().x(xScale).y(yScale).scaleExtent([-1, 8]).on("zoom", zoom))
+      .call(d3.behavior.zoom().x(xScale).y(yScale).scaleExtent([0, 15]).on("zoom", zoom))
       .append("svg:g");
 
   svg.append('svg:rect')
-      .attr('width', width + 10)
-      .attr('height', height + 10)
+      .attr('width', width * 3)
+      .attr('height', height * 4)
       .attr("class", "overlay");
 
   var loading = svg.append("text")
@@ -42,28 +42,27 @@
 
 
   d3.json("js/anime.json", function(json) {
+    var maxLinkValue = d3.max(json.links, function(d) {
+        return d.value;
+    });
       var distanceScale = d3.scale.linear()
-          .domain([1, d3.max(json.links, function(d) {
-              return d.value;
-          })])
-          .range([100, 10]);
+          .domain([1, maxLinkValue])
+          .range([10, 5]);
 
       var force = self.force = d3.layout.force()
           .nodes(json.nodes)
           .links(json.links)
-          .gravity(.1)
+          .gravity(.05)
           .linkDistance(function(d) {
               return distanceScale(d.value);
           })
           //.linkStrength( function(d) { return strengthScale(d.value); })
-          .charge(-120)
-          .size([width, height]);
+          .charge(-500)
+          .size([width * 2, height * 2]);
 
       var strokeWidth = d3.scale.linear()
-          .domain([1, d3.max(json.links, function(d) {
-              return d.value;
-          })])
-          .range([0.1, 8]);
+          .domain([1, maxLinkValue])
+          .range([0.15, 8]);
 
       var link = svg.selectAll(".link")
           .data(json.links)
@@ -80,7 +79,7 @@
           .domain([1, d3.max(json.nodes, function(d) {
               return d.rank;
           })])
-          .range([3, 35]);
+          .range([5, 50]);
 
       var radius = function(d) {
           return rankScale(d.rank);
@@ -213,8 +212,8 @@
       }, 10);
 
       $('svg circle').tipsy({
-          gravity: 'b',
-          trigger: 'hover',
+          gravity: 'topright',
+          trigger: 'manual',
           html: true,
           opacity: 1,
           fade: true,
