@@ -1,24 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>AniMap</title>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Animap</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
-
 <body>
-  <div class="modifiers">
-    <input type="button" value="Names" onclick="animap.toggleNames()" title="You can search only if you enabled the names. Look for the yellow patch." />
-    <input type="button" value="Horror"   onclick="animap.toggleGenre('Horror')" title="Toggle horror anime" />
-    <input type="button" value="Mystery"  onclick="animap.toggleGenre('Mystery')" title="Toggle mystery anime" />
-    <input type="button" value="Watched"  onclick="animap.toggleMyList()" title="What have you watched (demo)" />
-    <input type="button" value="My Ranks" onclick="animap.toggleMyRank()" title="How you ranked the anime (demo)" />
-  </div>
-
-  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-  
-  <script src="js/jquery.tipsy-1.0.2-custom.min.js"></script>
-  <script src="js/index.js"></script>
+    <div id="content"></div>
+    <script type="text/javascript" src="/static/bundle.js"></script>
 </body>
 </html>
