@@ -5,8 +5,12 @@ export default {
   highlightColor: '#B54545',
   strokeColor: '#F7ECDF',
   linkVisibility: 'visible',
-  titleVisibility: 'hidden',
   isAlreadySelected: false,
   isMyListVisible: false,
-  linkedByIndex: {}
+  nodeIdPrefix: 'nodeId',
+  selectors: {
+    zoomableArea: '#zoomableArea',
+    canvas: '#canvas'
+  },
+  notConnectedOpacity: .2
 }

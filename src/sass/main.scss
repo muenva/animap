@@ -1,51 +1,76 @@
-$color-stroke: #F7ECDF;
-$color-bg: #F5DEB3;
-$color-node: #3A8F9B;
-$color-accent: #B54545;
-
-body {
-	margin:0;
-	padding:0;
-	overflow: auto;
-	position: relative;
-}
-
-.loading {
-	position: absolute;
-	width: 100%;
-	text-align: center;
-	top: 50vh;
-	pointer-events: none;
-}
+@import 'variables';
+@import 'global';
 
 svg {
 	background: $color-bg;
-	> g {
-		cursor: -webkit-grab;
-		cursor: -moz-grab;
-	}
 }
+
+#zoomableArea {
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+}
+
 .overlay {
 	fill: none;
 	pointer-events: all;
 	stroke: black;
 	fill: white;
 }
+
 .node {
-	text {
-		font: 10px sans-serif;
+	> text {
+		font-family: sans-serif;
+		transition: opacity .23s ease;
+		pointer-events: none;
+		opacity: 0;
+
+		&.is-visible {
+			opacity: 1;
+		}
 	}
-	circle {
+	> circle {
+		transition: fill .35s ease;
+		fill: $color-node;
 		stroke: white;
 		stroke-width:1px;
 		cursor: pointer !important;
 		outline: none;
 	}
+	&.is-highlighted {
+		> circle {
+			fill: $color-accent;
+		}
+	}
 }
 
-.title {
-	pointer-events: none;
-	visibility: hidden;
+line {
+	transition: opacity .35s ease, color .35s ease;
+	stroke: $color-stroke;
+	opacity: 1;
+}
+
+.highlight-only-selected-nodes {
+	transition: opacity .35s ease;
+	.node {
+		opacity: .2;
+		&.is-connected {
+			opacity: 1;
+			.title {
+				opacity: 1;
+			}
+			> circle {
+				fill: $color-accent;
+				box-shadow: 0 0 3px 1px black;
+			}
+		}
+	}
+	line {
+		opacity: .2;
+		&.is-connected {
+			opacity: 1;
+			stroke: $color-accent;
+		}
+	}
 }
 
 .modifiers {
@@ -60,52 +85,4 @@ svg {
 		min-width: 100px;
 		cursor: pointer;
 	}
-}
-
-.popDiv {
-	padding:10px;
-	//height: 250px;
-	img {
-		margin:0 20px 0 0;
-		width:126px;
-		height:183px;
-		float:left;
-	}
-	p {
-		font-size:100%;
-		color: white;
-		padding:0;
-		font-family:Verdana, Geneva, sans-serif;
-		text-align:left;
-		word-wrap:break-word;
-
-		&.header {
-			margin:0 0 .7em 146px;
-		}
-	}
-
-	span {
-		font-weight:bold;
-	}
-
-	a.videoLink {
-		color: $color-node;
-		font-size:120%;
-	}
-}
-.tipsy {
-	padding:2px !important;
-}
-.tipsy-inner {
-	min-width: 310px !important;
-	max-width:330px !important;
-	//height:240px !important;
-}
-
-.fancybox-overlay-fixed {
-	background-color: rgba(0,0,0,.8);
-}
-
-::selection {
-	background: $color-accent !important;
 }
