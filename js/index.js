@@ -242,32 +242,16 @@
       });
 
   });
-  var count = 0;
-  function toggleInfo(ele) {
-      //hide tooltip
-      if ($(ele).attr("rel") === "show") {
-          $(ele).tipsy("hide");
-          $(ele).attr('rel', 'hide');
-          count--;
-      }
-      //swap tooltips
-      else if ($(ele).attr("rel") === "hide" && count === 1) {
-          $('.tipsy').remove();
-          $(ele).tipsy("show");
-          $(ele).attr('rel', 'show');
-          count = 0;
-      }
-      //show tooltip
-      else {
-          $(ele).tipsy("show");
-          $(ele).attr('rel', 'show');
-          count++;
 
-      }
-      $(".tipsy").click(function() {
-          $('.tipsy').remove();
-      });
-      return false;
+  function toggleInfo(element) {
+    var isMoreInfoShown = element.getAttribute('rel') === 'show';
+    $('.tipsy').remove();
+    if (isMoreInfoShown) {
+      element.setAttribute('rel', 'hide');
+    } else {
+      element.setAttribute('rel', 'show');
+      $(element).tipsy("show");
+    }
   }
 
 
@@ -370,6 +354,9 @@
   }
 
   $(document).ready(function() {
+    $(".tipsy").click(function() {
+        $('.tipsy').remove();
+    });
       $(".videoLink").fancybox({
           'width': '80%',
           'height': '80%',
